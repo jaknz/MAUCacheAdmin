@@ -7,7 +7,7 @@
 	<key>ProgramArguments</key>
 	<array>
 		<string>/usr/local/bin/MAUCacheAdmin</string>
-		<string>--CachePath:/Volumes/Storage/MAUCache</string>
+		<string>--CachePath:/Users/Shared/MAUCache</string>
 	</array>
 	<key>RunAtLoad</key>
 	<true/>

@@ -52,10 +52,9 @@ function InitializeScratchArea {
 function InitializeCacheArea {
 # Verifies cache area connectivity and cleans up as necessary
 	if [ ! -d "$CACHEPATH" ]; then
-		echo "Error: $CACHEPATH is not accessible"
-		echo
-		exit 1
+		mkdir -p "$CACHEPATH"
 	fi
+	chmod -R u+rwX,go+rX-w "$CACHEPATH"
 }
 
 function ResolveDownloadUrl {
