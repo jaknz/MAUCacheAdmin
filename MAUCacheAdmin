@@ -34,8 +34,8 @@ function ShowUsage {
 # Shows tool usage and parameters
 	echo $TOOL_NAME - $TOOL_VERSION
 	echo "Purpose: Downloads MAU collateral and packages from the Office CDN to a local web server"
-	echo "Usage: MAUCacheAdmin --CachePath:<path> [--CheckInterval:<minutes>] [--HTTPOnly] [--NoCollateral]"
-	echo "Example: MAUCacheAdmin --CachePath:/Volumes/web/MAU/cache --CheckInterval:60"
+	echo "Usage: MAUCacheAdmin --CachePath:<path> [--HTTPOnly] [--NoCollateral]"
+	echo "Example: MAUCacheAdmin --CachePath:/Volumes/web/MAU/cache"
 	echo
 	exit 0
 }
@@ -268,10 +268,6 @@ else
     	CACHEPATH=${KEY#*:}
     	shift # past argument
     	;;
-    	--CheckInterval:*|-i:*|--checkinterval:*)
-    	CHECKINTERVAL=${KEY#*:}
-    	shift # past argument
-    	;;
     	--HTTPOnly|-h|--httponly)
     	HTTPONLY=true
     	shift # past argument
@@ -289,8 +285,6 @@ else
 fi
 
 ## Main
-while :
-do
 	# Get a clean area for writing temporary files
 	InitializeScratchArea
 	# Verify that the cache area is ready to go
@@ -318,16 +312,4 @@ do
 		done
 	done
 	
-	# If CheckInterval wasn't specified on the command-line, just run once
-	if [ "$CHECKINTERVAL" == '' ]; then
-		exit 0
-	else
-	# Otherwise, sleep for the specified number of minutes before checking again
-		echo "Sleeping for $CHECKINTERVAL minutes..."
-		CHECKINTERVALSECS=$(expr $CHECKINTERVAL \* 60)
-		# Wait until the next check interval
-		sleep "$CHECKINTERVALSECS"
-	fi
-done
-
 exit 0
