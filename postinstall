@@ -1,0 +1,10 @@
+#!/bin/bash
+
+## If the install target is the startup volume, load the LaunchDaemon now
+## rather than requiring a restart to load it.
+
+if [ "$3" == "/" ]; then
+	/bin/launchctl load -w /Library/LaunchDaemons/com.github.jaknz.maucache.plist
+fi
+
+exit 0
