@@ -15,7 +15,5 @@
 	<false/>
 	<key>StartInterval</key>
 	<integer>3600</integer>
-	<key>LowPriorityIO</key>
-	<true/>
 </dict>
 </plist>
